@@ -77,8 +77,8 @@ export const DATA = {
       location: "Remote",
       title: "Bitcoin Protocol Engineer",
       logoUrl: "/stealth.png",
-      start: "May 2021",
-      end: "Oct 2022",
+      start: "November 2025",
+      end: "till now",
       description:
         "Implemented the Bitcoin discreet log contract (DLC) protocol specifications as an open source Typescript SDK. Dockerized all microservices and setup production kubernetes cluster. Architected a data lake using AWS S3 and Athena for historical backtesting of bitcoin trading strategies. Built a mobile app using react native and typescript.",
     },
@@ -101,8 +101,8 @@ export const DATA = {
       location: "Santa Clara, CA",
       title: "Software Engineer",
       logoUrl: "/cf.jpeg",
-      start: "January 2020",
-      end: "April 2020",
+      start: "January 2024",
+      end: "May 2024",
       description:
         "Architected and wrote the entire MVP of the GeForce Now Cloud Gaming internal admin and A/B testing dashboard using React, Redux, TypeScript, and Python.",
     },
@@ -142,59 +142,17 @@ export const DATA = {
       video: "",
     },
     {
-      title: "Magic UI",
-      href: "https://magicui.design",
-      dates: "June 2023 - Present",
+      title: "Flappy Bird AI",
+      href: "https://ai-flappy-bird.vercel.app/",
+      dates: "November 2025",
       active: true,
       description:
-        "Designed, developed and sold animated UI components for developers.",
-      technologies: [
-        "Next.js",
-        "Typescript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Stripe",
-        "Shadcn UI",
-        "Magic UI",
-      ],
+        "Flappy Bird game with a self-learning AI that learns to play the game using a Genetic Algorithm and Neural Networks.",
+      technologies: ["Javascript"],
       links: [
         {
           type: "Website",
-          href: "https://magicui.design",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/magicuidesign/magicui",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "https://cdn.magicui.design/bento-grid.mp4",
-    },
-    {
-      title: "llm.report",
-      href: "https://llm.report",
-      dates: "April 2023 - September 2023",
-      active: true,
-      description:
-        "Developed an open-source logging and analytics platform for OpenAI: Log your ChatGPT API requests, analyze costs, and improve your prompts.",
-      technologies: [
-        "Next.js",
-        "Typescript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Shadcn UI",
-        "Magic UI",
-        "Stripe",
-        "Cloudflare Workers",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://llm.report",
+          href: "https://ai-flappy-bird.vercel.app/",
           icon: <Icons.globe className="size-3" />,
         },
         {
@@ -203,37 +161,8 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
-      video: "https://cdn.llm.report/openai-demo.mp4",
-    },
-    {
-      title: "Automatic Chat",
-      href: "https://automatic.chat",
-      dates: "April 2023 - March 2024",
-      active: true,
-      description:
-        "Developed an AI Customer Support Chatbot which automatically responds to customer support tickets using the latest GPT models.",
-      technologies: [
-        "Next.js",
-        "Typescript",
-        "PostgreSQL",
-        "Prisma",
-        "TailwindCSS",
-        "Shadcn UI",
-        "Magic UI",
-        "Stripe",
-        "Cloudflare Workers",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://automatic.chat",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
-      image: "",
-      video:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/automatic-chat.mp4",
+      image: "/flappy-bird.png",
+      video: "",
     },
   ],
 } as const;
