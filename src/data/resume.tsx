@@ -76,7 +76,7 @@ export const DATA = {
       badges: [],
       location: "Remote",
       title: "Bitcoin Protocol Engineer",
-      logoUrl: "/atomic.png",
+      logoUrl: "/stealth.png",
       start: "May 2021",
       end: "Oct 2022",
       description:
@@ -87,10 +87,10 @@ export const DATA = {
       badges: [],
       href: "https://shopify.com",
       location: "Remote",
-      title: "Software Engineer",
-      logoUrl: "/shopify.svg",
-      start: "January 2021",
-      end: "April 2021",
+      title: "Social Media Manager and Web Dev Intern",
+      logoUrl: "/walkins.jpg",
+      start: "June 2025",
+      end: "till now",
       description:
         "Implemented a custom Kubernetes controller in Go to automate the deployment of MySQL and ProxySQL custom resources in order to enable 2,000+ internal developers to instantly deploy their app databases to production. Wrote several scripts in Go to automate MySQL database failovers while maintaining master-slave replication topologies and keeping Zookeeper nodes consistent with changes.",
     },
@@ -100,7 +100,7 @@ export const DATA = {
       badges: [],
       location: "Santa Clara, CA",
       title: "Software Engineer",
-      logoUrl: "/nvidia.png",
+      logoUrl: "/cf.jpeg",
       start: "January 2020",
       end: "April 2020",
       description:
