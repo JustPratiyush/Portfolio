@@ -11,7 +11,7 @@ export const DATA = {
     "Software Engineer. I love building things and helping people. Very active on Twitter.",
   summary:
     "At the end of 2022, I quit my job as a software engineer to go fulltime into building and scaling my own SaaS businesses. In the past, [I pursued a double degree in computer science and business](/#education), [interned at big tech companies in Silicon Valley](https://www.youtube.com/watch?v=d-LJ2e5qKdE), and [competed in over 21 hackathons for fun](/#hackathons). I also had the pleasure of being a part of the first ever in-person cohort of buildspace called [buildspace sf1](https://buildspace.so/sf1).",
-  avatarUrl: "/ME.jpg",
+  avatarUrl: "/me.png",
   skills: [
     "React",
     "Next.js",
@@ -99,12 +99,12 @@ export const DATA = {
       href: "https://nvidia.com/",
       badges: [],
       location: "Santa Clara, CA",
-      title: "Software Engineer",
+      title: "Co-Founder",
       logoUrl: "/cf.jpeg",
       start: "January 2024",
       end: "May 2024",
       description:
-        "Architected and wrote the entire MVP of the GeForce Now Cloud Gaming internal admin and A/B testing dashboard using React, Redux, TypeScript, and Python.",
+        "4 Friends of us started an agency with the vision of providing",
     },
   ],
   education: [
