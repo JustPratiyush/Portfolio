@@ -10,7 +10,7 @@ export const DATA = {
   description:
     "Software Engineer. I love building things and helping people. Very active on Twitter.",
   summary:
-    "At the end of 2022, I quit my job as a software engineer to go fulltime into building and scaling my own SaaS businesses. In the past, [I pursued a double degree in computer science and business](/#education), [interned at big tech companies in Silicon Valley](https://www.youtube.com/watch?v=d-LJ2e5qKdE), and [competed in over 21 hackathons for fun](/#hackathons). I also had the pleasure of being a part of the first ever in-person cohort of buildspace called [buildspace sf1](https://buildspace.so/sf1).",
+    "A 21-year-old software engineer with a deep fascination for neuroscience and how the brain works. I began my journey into web development at the end of 2024.",
   avatarUrl: "/me.png",
   skills: [
     "React",
@@ -72,15 +72,15 @@ export const DATA = {
   work: [
     {
       company: "Stealth Startup",
-      href: "https://atomic.finance",
+      href: "",
       badges: [],
       location: "Remote",
-      title: "Bitcoin Protocol Engineer",
+      title: "Independent Researcher",
       logoUrl: "/stealth.png",
       start: "November 2025",
       end: "till now",
       description:
-        "Implemented the Bitcoin discreet log contract (DLC) protocol specifications as an open source Typescript SDK. Dockerized all microservices and setup production kubernetes cluster. Architected a data lake using AWS S3 and Athena for historical backtesting of bitcoin trading strategies. Built a mobile app using react native and typescript.",
+        "Exploring a potential startup concept through independent research, problem discovery, and early MVP ideation",
     },
     {
       company: "Walkins",
