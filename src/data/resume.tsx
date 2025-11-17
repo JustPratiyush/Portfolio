@@ -85,14 +85,14 @@ export const DATA = {
     {
       company: "Walkins",
       badges: [],
-      href: "https://shopify.com",
+      href: "hpttps://walkins.net/",
       location: "Remote",
       title: "Social Media Manager and Web Dev Intern",
       logoUrl: "/walkins.jpg",
       start: "June 2025",
       end: "till now",
       description:
-        "Implemented a custom Kubernetes controller in Go to automate the deployment of MySQL and ProxySQL custom resources in order to enable 2,000+ internal developers to instantly deploy their app databases to production. Wrote several scripts in Go to automate MySQL database failovers while maintaining master-slave replication topologies and keeping Zookeeper nodes consistent with changes.",
+        "Working at a modern social media startup where I manage the company's online presence and contribute to web development initiatives. My role includes enhancing digital outreach, improving website functionality, and supporting brand growth across multiple platforms.",
     },
     {
       company: "Cupertino Focus",
