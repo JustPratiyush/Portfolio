@@ -6,22 +6,45 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatDate(date: string) {
-  let currentDate = new Date().getTime();
+  // Parse the date string and normalize to local timezone
+  let targetDate: Date;
   if (!date.includes("T")) {
-    date = `${date}T00:00:00`;
+    // If no time is provided, parse as local date at midnight
+    const [year, month, day] = date.split("-").map(Number);
+    targetDate = new Date(year, month - 1, day);
+  } else {
+    targetDate = new Date(date);
   }
-  let targetDate = new Date(date).getTime();
-  let timeDifference = Math.abs(currentDate - targetDate);
-  let daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-  let fullDate = new Date(date).toLocaleString("en-us", {
+  // Get current date at midnight for accurate day comparison
+  const now = new Date();
+  const currentDate = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate()
+  );
+  const targetDateMidnight = new Date(
+    targetDate.getFullYear(),
+    targetDate.getMonth(),
+    targetDate.getDate()
+  );
+
+  // Calculate difference in milliseconds
+  const timeDifference = currentDate.getTime() - targetDateMidnight.getTime();
+  const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+  // Format the full date
+  let fullDate = targetDate.toLocaleString("en-us", {
     month: "long",
     day: "numeric",
     year: "numeric",
   });
 
-  if (daysAgo < 1) {
+  // Only show "Today" if it's actually today (daysAgo === 0)
+  if (daysAgo === 0) {
     return "Today";
+  } else if (daysAgo === 1) {
+    return `${fullDate} (1d ago)`;
   } else if (daysAgo < 7) {
     return `${fullDate} (${daysAgo}d ago)`;
   } else if (daysAgo < 30) {
