@@ -83,18 +83,6 @@ export const DATA = {
         "Exploring a potential startup concept through independent research, problem discovery, and early MVP ideation",
     },
     {
-      company: "Walkins",
-      badges: [],
-      href: "hpttps://walkins.net/",
-      location: "Remote",
-      title: "Social Media Manager and Web Dev Intern",
-      logoUrl: "/walkins.jpg",
-      start: "June 2025",
-      end: "till now",
-      description:
-        "Working at a modern social media startup where I manage the company's online presence and contribute to web development initiatives. My role includes enhancing digital outreach, improving website functionality, and supporting brand growth across multiple platforms.",
-    },
-    {
       company: "Cupertino Focus",
       href: "https://nvidia.com/",
       badges: [],
