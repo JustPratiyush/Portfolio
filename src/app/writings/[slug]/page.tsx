@@ -38,7 +38,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `${DATA.url}/blog/${post.slug}`,
+      url: `${DATA.url}/writings/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -54,7 +54,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Blog({
+export default async function WritingPost({
   params,
 }: {
   params: {
@@ -68,7 +68,7 @@ export default async function Blog({
   }
 
   return (
-    <section id="blog">
+    <section id="writings" className="pb-16 md:pb-4">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -83,7 +83,7 @@ export default async function Blog({
             image: post.metadata.image
               ? `${DATA.url}${post.metadata.image}`
               : `${DATA.url}/og?title=${post.metadata.title}`,
-            url: `${DATA.url}/blog/${post.slug}`,
+            url: `${DATA.url}/writings/${post.slug}`,
             author: {
               "@type": "Person",
               name: DATA.name,

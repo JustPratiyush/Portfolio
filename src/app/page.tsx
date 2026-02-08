@@ -160,16 +160,23 @@ export default async function Page() {
               </BlurFade>
             ))}
           </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 15}>
+            <div className="flex justify-center">
+              <Link
+                href="https://kuchhal.notion.site/My-Work-2ff9b44351df8010a973e64580760bc8?source=copy_link"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                View all Projects →
+              </Link>
+            </div>
+          </BlurFade>
         </div>
       </section>
-      <section id="blog">
+      <section id="writings">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                {/* <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Blog
-                </div> */}
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   My Writings
                 </h2>
@@ -187,7 +194,7 @@ export default async function Page() {
                 delay={BLUR_FADE_DELAY * 14 + id * 0.05}
               >
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={`/writings/${post.slug}`}
                   className="block p-4 transition-colors hover:bg-accent/50 hover:text-accent-foreground rounded-lg"
                 >
                   <p className="font-medium tracking-tight">
@@ -208,7 +215,7 @@ export default async function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 15}>
             <div className="flex justify-center">
               <Link
-                href="/blog"
+                href="/writings"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 View all posts →
@@ -221,9 +228,9 @@ export default async function Page() {
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <div className="space-y-3">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+              {/* <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
                 Contact
-              </div>
+              </div> */}
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Get in Touch
               </h2>
