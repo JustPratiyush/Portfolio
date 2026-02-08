@@ -5,6 +5,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
+// Render on each request so formatDate() uses current time (e.g. "2w ago") instead of build time
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
