@@ -5,13 +5,23 @@ import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { getBlogPosts } from "@/data/blog";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
+const LATEST_BLOGS_COUNT = 3;
 
-export default function Page() {
+export default async function Page() {
+  const allPosts = await getBlogPosts();
+  const latestPosts = allPosts
+    .sort(
+      (a, b) =>
+        new Date(b.metadata.publishedAt).getTime() -
+        new Date(a.metadata.publishedAt).getTime(),
+    )
+    .slice(0, LATEST_BLOGS_COUNT);
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
@@ -150,6 +160,61 @@ export default function Page() {
               </BlurFade>
             ))}
           </div>
+        </div>
+      </section>
+      <section id="blog">
+        <div className="space-y-12 w-full py-12">
+          <BlurFade delay={BLUR_FADE_DELAY * 13}>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  Blog
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Latest from my Writings
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Thoughts on software, life, and whatever I&apos;m thinking
+                  about.
+                </p>
+              </div>
+            </div>
+          </BlurFade>
+          <div className="flex flex-col gap-3 max-w-[800px] mx-auto">
+            {latestPosts.map((post, id) => (
+              <BlurFade
+                key={post.slug}
+                delay={BLUR_FADE_DELAY * 14 + id * 0.05}
+              >
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="block p-4 transition-colors hover:bg-accent/50 hover:text-accent-foreground rounded-lg"
+                >
+                  <p className="font-medium tracking-tight">
+                    {post.metadata.title}
+                  </p>
+                  {post.metadata.summary && (
+                    <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+                      {post.metadata.summary}
+                    </p>
+                  )}
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    {post.metadata.publishedAt}
+                  </p>
+                </Link>
+              </BlurFade>
+            ))}
+          </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 15}>
+            <div className="flex justify-center">
+              <Link
+                href="/blog"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              >
+                View all posts →
+              </Link>
+            </div>
+          </BlurFade>
         </div>
       </section>
       <section id="contact">
