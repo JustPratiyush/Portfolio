@@ -16,9 +16,10 @@ export default async function WritingsPage() {
   const posts = await getBlogPosts();
 
   return (
-    <section className="relative w-full min-h-[500px]">
-      <Meteors number={40} angle={-45} className="fixed inset-0 z-[-1]" />
-      <div className="relative z-10 w-full">
+    <>
+      <Meteors number={40} angle={-45} className="z-[-1]" />
+      <section className="relative w-full min-h-[500px]">
+        <div className="relative z-10 w-full">
         <BlurFade delay={BLUR_FADE_DELAY}>
           <h1 className="font-medium text-2xl mb-8 tracking-tighter">
             My Writings
@@ -55,5 +56,6 @@ export default async function WritingsPage() {
           ))}
       </div>
     </section>
+    </>
   );
 }

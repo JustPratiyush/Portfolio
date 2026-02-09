@@ -9,6 +9,7 @@ import { getBlogPosts } from "@/data/blog";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import { Meteors } from "@/components/ui/meteors";
 
 const BLUR_FADE_DELAY = 0.04;
 const LATEST_BLOGS_COUNT = 3;
@@ -23,7 +24,9 @@ export default async function Page() {
     )
     .slice(0, LATEST_BLOGS_COUNT);
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <>
+      <Meteors number={40} angle={-45} className="z-[-1]" />
+      <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
@@ -264,6 +267,7 @@ export default async function Page() {
           </BlurFade>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
