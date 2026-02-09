@@ -25,7 +25,9 @@ export default async function Page() {
     .slice(0, LATEST_BLOGS_COUNT);
   return (
     <>
-      <Meteors number={40} angle={-45} className="z-[-1]" />
+      <div className="absolute top-0 left-0 w-full h-screen z-[-1] overflow-hidden pointer-events-none">
+        <Meteors number={40} angle={-45} />
+      </div>
       <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">

@@ -17,7 +17,9 @@ export default async function WritingsPage() {
 
   return (
     <>
-      <Meteors number={40} angle={-45} className="z-[-1]" />
+      <div className="absolute top-0 left-0 w-full h-screen z-[-1] overflow-hidden pointer-events-none">
+        <Meteors number={40} angle={-45} />
+      </div>
       <section className="relative w-full min-h-[500px]">
         <div className="relative z-10 w-full">
         <BlurFade delay={BLUR_FADE_DELAY}>
