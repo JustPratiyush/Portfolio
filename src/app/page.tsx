@@ -49,6 +49,21 @@ export default async function Page() {
           </div>
         </div>
       </section>
+            <section id="availability">
+        <div className="mx-auto w-full max-w-2xl text-center">
+          <BlurFade delay={BLUR_FADE_DELAY * 2}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-3 py-1.5 dark:border-green-800 dark:bg-green-950/50">
+              <div className="relative size-2">
+                <div className="absolute inset-0 size-2 rounded-full bg-green-500 animate-pulse"></div>
+                <div className="absolute inset-0 size-2 rounded-full bg-green-400 animate-ping"></div>
+              </div>
+              <span className="text-sm font-medium text-green-700 dark:text-green-300">
+                Available - Open to new freelance projects and collaborations
+              </span>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">About</h2>
