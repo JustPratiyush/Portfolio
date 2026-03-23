@@ -24,6 +24,7 @@ export const DATA = {
     "Kubernetes",
     "Java",
     "C",
+    "Bun",
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },

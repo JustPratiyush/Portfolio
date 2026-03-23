@@ -4,17 +4,21 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const openGraphImage = {
+  url: "/resume/OpenGraph.png",
+  width: 1280,
+  height: 720,
+  alt: `${DATA.name} portfolio preview`,
+} as const;
 
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
+  alternates: {
+    canonical: DATA.url,
+  },
   title: {
     default: DATA.name,
     template: `%s | ${DATA.name}`,
@@ -27,6 +31,7 @@ export const metadata: Metadata = {
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
+    images: [openGraphImage],
   },
   robots: {
     index: true,
@@ -41,7 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: `${DATA.name}`,
+    description: DATA.description,
     card: "summary_large_image",
+    images: [openGraphImage.url],
   },
   verification: {
     google: "",
@@ -59,10 +66,14 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased max-w-3xl mx-auto py-12 sm:py-24 px-4 sm:px-5",
-          fontSans.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <TooltipProvider delayDuration={0}>
             {children}
             <Navbar />

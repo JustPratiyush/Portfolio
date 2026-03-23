@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { createPortal } from "react-dom";
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -44,37 +43,16 @@ const WEEK_STEP = CELL_SIZE + CELL_GAP;
 const MONTH_LABEL_Y = 12;
 const GRID_Y_OFFSET = 28;
 
-const DARK_LEVEL_COLORS = [
-  "#161b22",
-  "#0e4429",
-  "#006d32",
-  "#26a641",
-  "#39d353",
+const LEVEL_FILLS = [
+  "var(--gh-level-0)",
+  "var(--gh-level-1)",
+  "var(--gh-level-2)",
+  "var(--gh-level-3)",
+  "var(--gh-level-4)",
 ] as const;
 
-const LIGHT_LEVEL_COLORS = [
-  "#e8ece8",
-  "#9dd8a8",
-  "#67c37a",
-  "#35a857",
-  "#1f7a3c",
-] as const;
-
-function getThemePalette(isDark: boolean) {
-  return {
-    cardClassName: isDark
-      ? "overflow-hidden bg-[#05060a] text-zinc-100 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.9)]"
-      : "overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#fbfdfb_100%)] text-zinc-950 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.16)]",
-    footerBorderClassName: isDark ? "border-zinc-900/80" : "border-zinc-200/70",
-    footerMutedClassName: isDark ? "text-zinc-400" : "text-zinc-600",
-    footerStrongClassName: isDark ? "text-zinc-100" : "text-zinc-950",
-    labelColor: isDark ? "#71717a" : "#6b7280",
-    levelColors: isDark ? DARK_LEVEL_COLORS : LIGHT_LEVEL_COLORS,
-    skeletonCellClassName: isDark ? "bg-zinc-900" : "bg-zinc-200/80",
-    skeletonLabelClassName: isDark ? "text-zinc-500" : "text-zinc-400",
-    skeletonLineClassName: isDark ? "bg-zinc-900" : "bg-zinc-200/80",
-  };
-}
+const HEATMAP_CARD_CLASS_NAME =
+  "overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#fbfdfb_100%)] text-zinc-950 shadow-none dark:bg-[linear-gradient(180deg,#05060a_0%,#05070d_100%)] dark:text-zinc-100";
 
 function formatContributionRange(from: string, to: string) {
   if (!from || !to) {
@@ -116,16 +94,12 @@ function formatContributionDate(date: string) {
 function HeatmapSkeleton() {
   const monthLabels = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"];
   const cells = Array.from({ length: 53 * 7 }, (_, index) => index);
-  const { resolvedTheme } = useTheme();
-  const palette = getThemePalette(resolvedTheme === "dark");
 
   return (
-    <Card className={palette.cardClassName}>
+    <Card className={HEATMAP_CARD_CLASS_NAME}>
       <CardContent className="p-5 sm:p-6">
         <div className="animate-pulse space-y-5">
-          <div
-            className={`flex justify-between text-[11px] uppercase tracking-[0.28em] ${palette.skeletonLabelClassName}`}
-          >
+          <div className="flex justify-between text-[11px] uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500">
             {monthLabels.map((label) => (
               <span key={label}>{label}</span>
             ))}
@@ -134,21 +108,15 @@ function HeatmapSkeleton() {
             {cells.map((cell) => (
               <div
                 key={cell}
-                className={`aspect-square rounded-[3px] ${palette.skeletonCellClassName}`}
+                className="aspect-square rounded-[3px] bg-zinc-200/80 dark:bg-zinc-900"
               />
             ))}
           </div>
         </div>
       </CardContent>
-      <CardFooter
-        className={`justify-between border-t px-5 py-4 sm:px-6 ${palette.footerBorderClassName}`}
-      >
-        <div
-          className={`h-7 w-48 animate-pulse rounded ${palette.skeletonLineClassName}`}
-        />
-        <div
-          className={`h-5 w-28 animate-pulse rounded ${palette.skeletonLineClassName}`}
-        />
+      <CardFooter className="justify-between border-t border-zinc-200/70 px-5 py-4 sm:px-6 dark:border-zinc-900/80">
+        <div className="h-7 w-48 animate-pulse rounded bg-zinc-200/80 dark:bg-zinc-900" />
+        <div className="h-5 w-28 animate-pulse rounded bg-zinc-200/80 dark:bg-zinc-900" />
       </CardFooter>
     </Card>
   );
@@ -165,8 +133,6 @@ export function GitHubContributionHeatmap({
   const [error, setError] = useState(false);
   const [hoveredContribution, setHoveredContribution] =
     useState<HoveredContribution | null>(null);
-  const { resolvedTheme } = useTheme();
-  const palette = getThemePalette(resolvedTheme === "dark");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -207,25 +173,19 @@ export function GitHubContributionHeatmap({
 
   if (!data || error) {
     return (
-      <Card className={palette.cardClassName}>
+      <Card className={HEATMAP_CARD_CLASS_NAME}>
         <CardContent className="p-5 sm:p-6">
-          <p className={`font-mono text-sm ${palette.footerMutedClassName}`}>
+          <p className="font-mono text-sm text-zinc-600 dark:text-zinc-400">
             GitHub activity is temporarily unavailable.
           </p>
         </CardContent>
-        <CardFooter
-          className={`justify-between border-t px-5 py-4 sm:px-6 ${palette.footerBorderClassName}`}
-        >
-          <span className={`font-mono text-sm ${palette.footerMutedClassName}`}>
+        <CardFooter className="justify-between border-t border-zinc-200/70 px-5 py-4 sm:px-6 dark:border-zinc-900/80">
+          <span className="font-mono text-sm text-zinc-600 dark:text-zinc-400">
             Live contribution data
           </span>
           <Link
             href={profileUrl}
-            className={`font-mono text-sm transition-colors ${
-              resolvedTheme === "dark"
-                ? "text-zinc-300 hover:text-white"
-                : "text-zinc-700 hover:text-zinc-950"
-            }`}
+            className="font-mono text-sm text-zinc-700 transition-colors hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white"
             rel="noreferrer"
             target="_blank"
           >
@@ -269,7 +229,9 @@ export function GitHubContributionHeatmap({
   }
 
   return (
-    <Card className={palette.cardClassName}>
+    <Card
+      className={`${HEATMAP_CARD_CLASS_NAME} [--gh-level-0:#e8ece8] [--gh-level-1:#9dd8a8] [--gh-level-2:#67c37a] [--gh-level-3:#35a857] [--gh-level-4:#1f7a3c] dark:[--gh-level-0:#161b22] dark:[--gh-level-1:#0e4429] dark:[--gh-level-2:#006d32] dark:[--gh-level-3:#26a641] dark:[--gh-level-4:#39d353]`}
+    >
       <CardContent className="p-5 sm:p-6">
         <div className="relative" onMouseLeave={() => setHoveredContribution(null)}>
           <div className="overflow-x-auto overflow-y-visible md:overflow-x-visible">
@@ -286,13 +248,14 @@ export function GitHubContributionHeatmap({
 
                 return (
                   <text
-                    key={`${month.label}-${month.weekIndex}`}
-                    x={monthCenter}
-                    y={MONTH_LABEL_Y}
-                    fill={palette.labelColor}
-                    fontFamily="ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
-                    fontSize="11"
-                    letterSpacing="0.08em"
+                  key={`${month.label}-${month.weekIndex}`}
+                  x={monthCenter}
+                  y={MONTH_LABEL_Y}
+                  fill="currentColor"
+                  className="text-zinc-500 dark:text-zinc-500"
+                  fontFamily="ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
+                  fontSize="11"
+                  letterSpacing="0.08em"
                     textAnchor="middle"
                   >
                     {month.label}
@@ -308,7 +271,7 @@ export function GitHubContributionHeatmap({
                   width={CELL_SIZE}
                   height={CELL_SIZE}
                   rx={2}
-                  fill={palette.levelColors[cell.level] ?? palette.levelColors[0]}
+                  fill={LEVEL_FILLS[cell.level] ?? LEVEL_FILLS[0]}
                   className="cursor-pointer outline-none"
                   onBlur={() => setHoveredContribution(null)}
                   onFocus={(event) =>
@@ -367,19 +330,17 @@ export function GitHubContributionHeatmap({
             )
           : null}
       </CardContent>
-      <CardFooter
-        className={`justify-between gap-4 border-t px-5 py-4 max-sm:flex-col max-sm:items-start sm:px-6 ${palette.footerBorderClassName}`}
-      >
-        <p className={`font-mono text-[11px] tracking-[0.08em] ${palette.footerMutedClassName}`}>
-          <span className={`mr-2 text-[11px] font-semibold ${palette.footerStrongClassName}`}>
+      <CardFooter className="justify-between gap-4 border-t border-zinc-200/70 px-5 py-4 max-sm:flex-col max-sm:items-start sm:px-6 dark:border-zinc-900/80">
+        <p className="font-mono text-[11px] tracking-[0.08em] text-zinc-600 dark:text-zinc-400">
+          <span className="mr-2 text-[11px] font-semibold text-zinc-950 dark:text-zinc-100">
             {data.totalContributions}
           </span>
           contributions in {rangeLabel}
         </p>
-        <div className={`flex items-center gap-2 font-mono text-[11px] tracking-[0.08em] ${palette.footerMutedClassName}`}>
+        <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.08em] text-zinc-600 dark:text-zinc-400">
           <span>Less</span>
           <div className="flex items-center gap-[5px]">
-            {palette.levelColors.map((color, index) => (
+            {LEVEL_FILLS.map((color, index) => (
               <span
                 key={`${color}-${index}`}
                 aria-hidden="true"

@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import type { CSSProperties } from "react"
+import { useMemo } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -14,6 +15,11 @@ interface MeteorsProps {
   className?: string
 }
 
+function seededUnit(seed: number) {
+  const value = Math.sin(seed) * 10000
+  return value - Math.floor(value)
+}
+
 export const Meteors = ({
   number = 10,
   minDelay = 0.2,
@@ -23,26 +29,39 @@ export const Meteors = ({
   angle = 215,
   className,
 }: MeteorsProps) => {
-  const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>(
-    []
-  )
+  const meteorStyles = useMemo<Array<CSSProperties>>(
+    () => {
+      const seedBase =
+        number * 11 +
+        minDelay * 13 +
+        maxDelay * 17 +
+        minDuration * 19 +
+        maxDuration * 23 +
+        angle * 29
 
-  useEffect(() => {
-    const styles = [...new Array(number)].map((_, idx) => ({
-      "--angle": angle + "deg",
-      top: -5,
-      left: Math.floor(Math.random() * 150) + "%",
-      animationDelay:
-        Math.random() * (maxDelay - minDelay) +
-        minDelay +
-        (idx % 2 === 0 ? Math.random() * 5 + 2 : 0) + // Delay half of them
-        "s",
-      animationDuration:
-        Math.floor(Math.random() * (maxDuration - minDuration) + minDuration) +
-        "s",
-    }))
-    setMeteorStyles(styles)
-  }, [number, minDelay, maxDelay, minDuration, maxDuration, angle])
+      return [...new Array(number)].map((_, idx) => {
+        const leftSeed = seededUnit(seedBase + idx * 1.37)
+        const delaySeed = seededUnit(seedBase + idx * 2.11)
+        const staggerSeed = seededUnit(seedBase + idx * 3.73)
+        const durationSeed = seededUnit(seedBase + idx * 4.97)
+
+        return {
+          "--angle": angle + "deg",
+          top: -5,
+          left: Math.floor(leftSeed * 150) + "%",
+          animationDelay:
+            delaySeed * (maxDelay - minDelay) +
+            minDelay +
+            (idx % 2 === 0 ? staggerSeed * 5 + 2 : 0) +
+            "s",
+          animationDuration:
+            Math.floor(durationSeed * (maxDuration - minDuration) + minDuration) +
+            "s",
+        }
+      })
+    },
+    [number, minDelay, maxDelay, minDuration, maxDuration, angle]
+  )
 
   return (
     <>
