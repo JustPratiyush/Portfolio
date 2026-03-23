@@ -1,4 +1,5 @@
 import { HackathonCard } from "@/components/hackathon-card";
+import { GitHubContributionHeatmap } from "@/components/github-contribution-heatmap";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
@@ -107,37 +108,10 @@ export default async function Page() {
         <section id="github-activity">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 5}>
-              <div className="space-y-2">
-                <h2 className="text-xl font-bold">GitHub Activity</h2>
-                <p className="text-sm text-muted-foreground">
-                  Public contribution heatmap for @{DATA.githubUsername}.
-                </p>
-              </div>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 6}>
-              <div className="rounded-xl border bg-card/50 p-4">
-                <div className="overflow-x-auto rounded-lg bg-white p-3">
-                  <img
-                    alt={`GitHub contribution heatmap for ${DATA.githubUsername}`}
-                    className="h-auto min-w-[720px] max-w-none"
-                    loading="lazy"
-                    src={`https://ghchart.rshah.org/0f766e/${DATA.githubUsername}`}
-                  />
-                </div>
-                <div className="mt-3 flex items-center justify-between gap-3 max-sm:flex-col max-sm:items-start">
-                  <p className="text-sm text-muted-foreground">
-                    Live chart based on public GitHub contribution data.
-                  </p>
-                  <Link
-                    href={DATA.contact.social.GitHub.url}
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    View GitHub profile →
-                  </Link>
-                </div>
-              </div>
+              <GitHubContributionHeatmap
+                profileUrl={DATA.contact.social.GitHub.url}
+                username={DATA.githubUsername}
+              />
             </BlurFade>
           </div>
         </section>
