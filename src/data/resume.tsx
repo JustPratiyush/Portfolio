@@ -12,6 +12,7 @@ export const DATA = {
   summary:
     "A 21-year-old software engineer with a deep fascination for neuroscience and how the brain works. I began my journey into web development at the end of 2024.",
   avatarUrl: "/resume/me.png",
+  githubUsername: "JustPratiyush",
   skills: [
     "React",
     "Next.js",
@@ -105,7 +106,31 @@ export const DATA = {
       end: "2027",
     },
   ],
+  projectsHeading: "What I\u2019ve Built",
   projects: [
+    {
+      title: "Sub-Stash",
+      href: "https://sub-stash.vercel.app/",
+      dates: "2026",
+      active: true,
+      description:
+        "Sub-Stash is a web-based subscription management platform that helps users track recurring expenses, monitor bank deductions, and avoid surprise charges with spending analytics, multi-currency support, and automated reminders.",
+      technologies: ["React", "Vite", "Supabase"],
+      links: [
+        {
+          type: "Website",
+          href: "https://sub-stash.vercel.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/JustPratiyush/sub-stash",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/resume/sub-stash.png",
+      video: "",
+    },
     {
       title: "Retro OS",
       href: "https://os-retro.vercel.app",
@@ -113,7 +138,7 @@ export const DATA = {
       active: true,
       description:
         "I built a fun, interactive Operating System inside the Browser inspired by classic Mac OS with a fully functional desktop environment",
-      technologies: ["Javascript", "HTML", "CSS"],
+      technologies: ["Javascript", "Redis Database"],
       links: [
         {
           type: "Website",
@@ -136,7 +161,7 @@ export const DATA = {
       active: true,
       description:
         "Flappy Bird game with a self-learning AI that learns to play the game using a Genetic Algorithm and Neural Networks.",
-      technologies: ["Javascript"],
+      technologies: ["Javascript", "HTML", "CSS"],
       links: [
         {
           type: "Website",
