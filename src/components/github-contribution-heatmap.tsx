@@ -272,62 +272,64 @@ export function GitHubContributionHeatmap({
     <Card className={palette.cardClassName}>
       <CardContent className="p-5 sm:p-6">
         <div className="relative" onMouseLeave={() => setHoveredContribution(null)}>
-          <svg
-            aria-label={`${data.totalContributions} GitHub contributions in ${rangeLabel}`}
-            className="block w-full"
-            role="img"
-            viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-          >
-            {data.months.map((month) => {
-              const monthCenter =
-                month.weekIndex * WEEK_STEP +
-                (month.span * WEEK_STEP - CELL_GAP) / 2;
+          <div className="overflow-x-auto overflow-y-visible md:overflow-x-visible">
+            <svg
+              aria-label={`${data.totalContributions} GitHub contributions in ${rangeLabel}`}
+              className="block h-auto w-[686px] md:w-full"
+              role="img"
+              viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+            >
+              {data.months.map((month) => {
+                const monthCenter =
+                  month.weekIndex * WEEK_STEP +
+                  (month.span * WEEK_STEP - CELL_GAP) / 2;
 
-              return (
-                <text
-                  key={`${month.label}-${month.weekIndex}`}
-                  x={monthCenter}
-                  y={MONTH_LABEL_Y}
-                  fill={palette.labelColor}
-                  fontFamily="ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
-                  fontSize="11"
-                  letterSpacing="0.08em"
-                  textAnchor="middle"
-                >
-                  {month.label}
-                </text>
-              );
-            })}
+                return (
+                  <text
+                    key={`${month.label}-${month.weekIndex}`}
+                    x={monthCenter}
+                    y={MONTH_LABEL_Y}
+                    fill={palette.labelColor}
+                    fontFamily="ui-monospace, SFMono-Regular, SF Mono, Menlo, monospace"
+                    fontSize="11"
+                    letterSpacing="0.08em"
+                    textAnchor="middle"
+                  >
+                    {month.label}
+                  </text>
+                );
+              })}
 
-            {data.cells.map((cell) => (
-              <rect
-                key={cell.date}
-                x={cell.weekIndex * WEEK_STEP}
-                y={GRID_Y_OFFSET + cell.dayIndex * WEEK_STEP}
-                width={CELL_SIZE}
-                height={CELL_SIZE}
-                rx={2}
-                fill={palette.levelColors[cell.level] ?? palette.levelColors[0]}
-                className="cursor-pointer outline-none"
-                onBlur={() => setHoveredContribution(null)}
-                onFocus={(event) =>
-                  updateHoveredContribution(
-                    cell,
-                    event.currentTarget.getBoundingClientRect().left +
-                      event.currentTarget.getBoundingClientRect().width / 2,
-                    event.currentTarget.getBoundingClientRect().top,
-                  )
-                }
-                onMouseEnter={(event) =>
-                  updateHoveredContribution(cell, event.clientX, event.clientY)
-                }
-                onMouseMove={(event) =>
-                  updateHoveredContribution(cell, event.clientX, event.clientY)
-                }
-                tabIndex={0}
-              />
-            ))}
-          </svg>
+              {data.cells.map((cell) => (
+                <rect
+                  key={cell.date}
+                  x={cell.weekIndex * WEEK_STEP}
+                  y={GRID_Y_OFFSET + cell.dayIndex * WEEK_STEP}
+                  width={CELL_SIZE}
+                  height={CELL_SIZE}
+                  rx={2}
+                  fill={palette.levelColors[cell.level] ?? palette.levelColors[0]}
+                  className="cursor-pointer outline-none"
+                  onBlur={() => setHoveredContribution(null)}
+                  onFocus={(event) =>
+                    updateHoveredContribution(
+                      cell,
+                      event.currentTarget.getBoundingClientRect().left +
+                        event.currentTarget.getBoundingClientRect().width / 2,
+                      event.currentTarget.getBoundingClientRect().top,
+                    )
+                  }
+                  onMouseEnter={(event) =>
+                    updateHoveredContribution(cell, event.clientX, event.clientY)
+                  }
+                  onMouseMove={(event) =>
+                    updateHoveredContribution(cell, event.clientX, event.clientY)
+                  }
+                  tabIndex={0}
+                />
+              ))}
+            </svg>
+          </div>
         </div>
         {hoveredContribution && typeof document !== "undefined"
           ? createPortal(
