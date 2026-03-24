@@ -11,7 +11,7 @@ export const DATA = {
     "Software Engineer. I love building things and helping people. Very active on X (Twitter).",
   summary:
     "A 21-year-old software engineer with a deep fascination for neuroscience and how the brain works. I began my journey into web development at the end of 2024.",
-  avatarUrl: "/resume/me.png",
+  avatarUrl: "/resume/me.webp",
   githubUsername: "JustPratiyush",
   skills: [
     "React",
