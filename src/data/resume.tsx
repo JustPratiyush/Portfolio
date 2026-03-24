@@ -133,12 +133,12 @@ export const DATA = {
       video: "",
     },
     {
-      title: "Retro OS",
+      title: "RetrOS",
       href: "https://os-retro.vercel.app",
       dates: "August 2025 - November 2025",
       active: true,
       description:
-        "I built a fun, interactive Operating System inside the Browser inspired by classic Mac OS with a fully functional desktop environment",
+        "RetrOS is a browser-based operating system sandbox inspired by classic Mac OS, reimagined with a modern twist and featuring a fully functional desktop environment",
       technologies: ["Javascript", "Redis Database"],
       links: [
         {
