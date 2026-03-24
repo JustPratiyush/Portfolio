@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 type GitHubContributionCell = {
   count: number;
   date: string;
@@ -16,7 +18,8 @@ type GitHubContributionMonth = {
 };
 
 const CONTRIBUTIONS_URL = "https://github.com/users";
-const CACHE_SECONDS = 60 * 60 * 6;
+const CACHE_SECONDS = 60 * 5;
+const STALE_WHILE_REVALIDATE_SECONDS = 60;
 
 const CELL_REGEX =
   /<td(?=[^>]*id="contribution-day-component-(\d+)-(\d+)")(?=[^>]*data-date="([^"]+)")(?=[^>]*data-level="([^"]+)")[^>]*><\/td>\s*<tool-tip[^>]*>([^<]+)<\/tool-tip>/g;
@@ -150,7 +153,7 @@ export async function GET(
 
     return NextResponse.json(contributionGraph, {
       headers: {
-        "Cache-Control": `s-maxage=${CACHE_SECONDS}, stale-while-revalidate=86400`,
+        "Cache-Control": `public, max-age=0, s-maxage=${CACHE_SECONDS}, stale-while-revalidate=${STALE_WHILE_REVALIDATE_SECONDS}`,
       },
     });
   } catch {

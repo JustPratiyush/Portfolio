@@ -142,6 +142,7 @@ export function GitHubContributionHeatmap({
         setError(false);
 
         const response = await fetch(`/api/github-contributions/${username}`, {
+          cache: "no-store",
           signal: controller.signal,
         });
 
